@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const rateLimit = require("express-rate-limit");
+// const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 
 // Load environment variables
@@ -24,23 +24,9 @@ const app = express();
 // Security middleware
 app.use(helmet());
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-});
-app.use("/api/", limiter);
-
-// Auth routes rate limiting
-const authLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5, // limit each IP to 5 login/register requests per hour
-});
-app.use("/api/auth/", authLimiter);
-
-// CORS configuration
+// CORS configuration - must be before routes
 const allowedOrigins = (
-  process.env.FRONTEND_URL || "http://localhost:5173"
+  process.env.FRONTEND_URL || "http://localhost:3000"
 ).split(",");
 app.use(
   cors({
@@ -58,6 +44,20 @@ app.use(
 // Body parsing middleware
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "5mb" }));
+
+// Rate limiting
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 100, // limit each IP to 100 requests per windowMs
+// });
+// app.use("/api/", limiter);
+
+// Auth routes rate limiting
+// const authLimiter = rateLimit({
+//   windowMs: 60 * 60 * 1000, // 1 hour
+//   max: 5, // limit each IP to 5 login/register requests per hour
+// });
+// app.use("/api/auth/", authLimiter);
 
 // Connect to MongoDB
 mongoose

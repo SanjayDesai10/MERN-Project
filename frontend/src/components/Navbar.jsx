@@ -85,7 +85,7 @@ const Navbar = () => {
                   Write
                 </Link>
 
-                <Link
+                {/* <Link
                   to="/dashboard"
                   style={{
                     color: "#6b7280",
@@ -102,7 +102,7 @@ const Navbar = () => {
                   }
                 >
                   Dashboard
-                </Link>
+                </Link> */}
 
                 <div style={{ position: "relative" }}>
                   <button

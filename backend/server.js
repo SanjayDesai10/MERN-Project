@@ -25,9 +25,10 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration - must be before routes
-const allowedOrigins = (
-  "https://mern-project-syzh.vercel.app/" || "http://localhost:3000"
-).split(",");
+const allowedOrigins = [
+  "https://mern-project-syzh.vercel.app",
+  "http://localhost:3000"
+];
 app.use(
   cors({
     origin: function (origin, callback) {

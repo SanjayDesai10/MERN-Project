@@ -29,10 +29,11 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* allow the app to occupy the full viewport width */
+  width: 100%;
   min-width: 320px;
   min-height: 100vh;
+  /* don't use flex centering on body — let layout components control alignment */
 }
 
 h1 {

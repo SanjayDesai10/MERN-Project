@@ -26,7 +26,7 @@ app.use(helmet());
 
 // CORS configuration - must be before routes
 const allowedOrigins = (
-  process.env.FRONTEND_URL || "http://localhost:3000"
+  "https://mern-project-syzh.vercel.app/" || "http://localhost:3000"
 ).split(",");
 app.use(
   cors({
